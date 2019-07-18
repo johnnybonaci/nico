@@ -67,14 +67,13 @@ $data = new RestWs($url, $headers);
         	$notice[] = $parse_5;
         }
 
-        //var_dump($notice);die;
 
 //////////// Armado de json//////////////
 
 	foreach ($notice as $key => $value) {
 			
 		$datos['name'] = ($key == 0) ? "" : str_replace($replace_h2, "", $value[0]);
-		$datos['description'] = ($key == 0) ? $value[0] : $value[1];
+		$datos['description'] = ($key == 0) ? str_replace($replace_h2, "", $value[0]) : str_replace($replace_h2, "", $value[1]);
 		$datos['img'] = ($key == 0) ? extraerSRC($value[1]) : extraerSRC($value[2]);
 		$datos['credit'] = ($key == 0) ? "" : $value[3];
 		$datos['text'] = ($key == 0) ? "" : $value[4];
@@ -85,7 +84,6 @@ $data = new RestWs($url, $headers);
 
 
 	}
-
 
 	//$json = str_replace("\u0022","\\\\\"",json_encode( $json,JSON_HEX_QUOT));
 
