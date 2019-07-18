@@ -3,11 +3,11 @@ $(document).ready(function(){
         url: "nico.php",
         type: "GET",
         dataType: "json",
+        data: {"id": "1093674"}
 
     }).done(function(respuesta){
 
             console.log(JSON.parse(JSON.stringify(respuesta)));
-            //console.log(JSON.stringify((respuesta)));
     
     }).fail(function( jqXHR, textStatus, errorThrown ) {
          
@@ -15,4 +15,4 @@ $(document).ready(function(){
 
    });   
 
-});        
+});       

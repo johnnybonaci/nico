@@ -2,7 +2,15 @@
 
 include "Rest.php";
 
-$url = "https://bukisa.com/wp-json/wp/v2/posts/1093674";
+$id="";
+
+if(isset($_GET['id'])) {
+
+	$id = $_GET['id'];
+
+}
+
+$url = "https://bukisa.com/wp-json/wp/v2/posts/".$id."";
 
 $headers = array(
         'Accept:application/json',
@@ -10,10 +18,12 @@ $headers = array(
     );
 
 	function extraerSRC($cadena) {
+
 	    preg_match('@src="([^"]+)"@', $cadena, $array);
 	    $src = array_pop($array);
 	    return $src;
 	}
+
 $data = new RestWs($url, $headers);
         try {
 
@@ -75,11 +85,11 @@ $data = new RestWs($url, $headers);
 
 	}
 
-    //header('Content-type: application/json; charset=utf-8');
 
 	//$json = str_replace("\u0022","\\\\\"",json_encode( $json,JSON_HEX_QUOT));
 
-	 echo json_encode($json);
+    header('Content-type: application/json; charset=utf-8');
+	echo json_encode($json);
 
 	 exit();
 
