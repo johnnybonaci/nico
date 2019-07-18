@@ -40,6 +40,7 @@ $data = new RestWs($url, $headers);
 
         ///Variables////
         $noticias = explode("<!--nextpage-->", $content);
+        $replace_h2 = array('<h2 style="text-align: center;">', '</h2>');
         $replace = array('<em>', '<div id="containerMrec"></div>');
         $total_n = count($noticias);
         $ultimo = $total_n - 1;
@@ -72,7 +73,7 @@ $data = new RestWs($url, $headers);
 
 	foreach ($notice as $key => $value) {
 			
-		$datos['name'] = ($key == 0) ? "" : $value[0];
+		$datos['name'] = ($key == 0) ? "" : str_replace($replace_h2, "", $value[0]);
 		$datos['description'] = ($key == 0) ? $value[0] : $value[1];
 		$datos['img'] = ($key == 0) ? extraerSRC($value[1]) : extraerSRC($value[2]);
 		$datos['credit'] = ($key == 0) ? "" : $value[3];
