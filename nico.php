@@ -72,9 +72,10 @@ $data = new RestWs($url, $headers);
         ///Variables////
         $replace_h2 = array('<h2 style="text-align: center;">','</h2>');
         $replace = array('<div id="containerMrec"></div>','</body></html>');
-        $replace_em = array('<blockquote>', '</blockquote>');
+        $replace_blockquote = array('<blockquote>', '</blockquote>');
+        $replace_em = array('<em>', '</em>');
         $replace_p = array('<p>', '</p>');
-        $variables = array($replace,$replace_p,$replace_em,$replace_h2);
+        $variables = array($replace,$replace_p,$replace_blockquote,$replace_h2,$replace_em);
         $total_n = count($noticias);
         $ultimo = $total_n - 1;
 
@@ -109,7 +110,35 @@ $data = new RestWs($url, $headers);
 	    }
 
     header('Content-type: application/json; charset=utf-8');
-	echo json_encode($notice);
+
+    if((isset($_GET['div'])) && ($_GET['div'] == 1)) {
+        $index = 1;
+        foreach ($notice as $key => $value) {
+
+            $div ='<div class="slide" infinite_index="'.$index.'">';
+            $div .='<h2 class="ajax_title"> ' . $value['name']. ' </h2>';
+            $div .= $value['description'];
+            $div .= '<div class="gallery-image">';
+            $div .= '<img class="img-responsive ajax_img" alt="" infinite_index="'.$index.'" src="'.$value['img'].'">';
+            $div .= "</div>";
+            $creditos = str_replace($variables[4], "", $value['credit']);
+            $div .= '<em class="ajax_attribution">'.$creditos.'</em>';
+            $div .= $value['text'];
+            $div .= "</div>";
+            $div .= "</div>";
+            $index++;
+            $array['div'] = $div;
+            $array_div[] = $array;
+        }
+       
+
+       echo json_encode($array_div);
+
+    }
+    else{
+
+	   echo json_encode($notice);
+    }
 
 	 exit();
 

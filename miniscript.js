@@ -1,18 +1,18 @@
 $(document).ready(function(){
-    $.ajax({
-        url: "nico.php",
-        type: "GET",
-        dataType: "json",
-        data: {"id": "1093674"}
-
-    }).done(function(respuesta){
-
-            console.log(JSON.parse(JSON.stringify(respuesta)));
     
-    }).fail(function( jqXHR, textStatus, errorThrown ) {
-         
-         console.log( "La solicitud a fallado: " +  textStatus);
 
-   });   
+    $.ajax({
+        url: "http://localhost/plantillas/nico/nico.php",
+        data: {"id": "1112180", "div": "1"},
+        dataType: "json",
+        async: false,
+        success:  function(data) {
+           items = JSON.parse(JSON.stringify(data));
+           $.each(data, function(i, item) {
+
+            $( "#div" ).append( item['div'] );
+            });
+        }
+    });
 
 });       
