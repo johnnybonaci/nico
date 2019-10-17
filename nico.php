@@ -118,20 +118,20 @@ $data = new RestWs($url, $headers);
             $div ='<div class="slide" infinite_index="'.$index.'">';
             $div .='<h2 class="ajax_title"> ' . $value['name']. ' </h2>';
             if ($index >= 3) {
-                $div .= '<div id="RTK_7dnR" style="overflow: hidden;" ></div>';
+                $div .= '<div id="RTK_7dnR" load-id="RTK_7dnR" style="overflow: hidden;" ></div>';
             }
             $div .= $value['description'];
             $div .= '<div class="gallery-image">';
             $div .= '<img class="img-responsive ajax_img" alt="" infinite_index="'.$index.'" src="'.$value['img'].'">';
             $div .= "</div>";
             if ($index >= 5) {
-                $div .= '<div id="RTK_CFgp" style="overflow: hidden;" ></div> <div id="RTK_rgCe" style="overflow: hidden;" ></div>';
+                $div .= '<div id="RTK_CFgp" load-id="RTK_CFgp" style="overflow: hidden;" ></div> <div id="RTK_rgCe" load-id="RTK_rgCe" style="overflow: hidden;" ></div>';
             }
             $creditos = str_replace($variables[4], "", $value['credit']);
             $div .= '<em class="ajax_attribution">'.$creditos.'</em>';
             $div .= $value['text'];
             if ($index >= 3) {
-                $div .= '<div id="RTK_CVmP" style="overflow: hidden;" ></div>';
+                $div .= '<div id="RTK_CVmP" load-id="RTK_CVmP" style="overflow: hidden;" ></div>';
             }
             $div .= "</div>";
             $div .= "</div>";
