@@ -122,7 +122,7 @@ $data = new RestWs($url, $headers);
             }
             $div .= $value['description'];
             $div .= '<div class="gallery-image">';
-            $div .= '<img class="img-responsive ajax_img" alt="" infinite_index="'.$index.'" src="'.$value['img'].'">';
+            $div .= '<img class="img-responsive ajax_img" alt="" infinite_index="'.$index.'" data-src="'.$value['img'].'" src="'.$value['img'].'">';
             $div .= "</div>";
             if ($index >= 5) {
                 $div .= '<div id="RTK_CFgp" load-id="RTK_CFgp" style="overflow: hidden;" ></div> <div id="RTK_rgCe" load-id="RTK_rgCe" style="overflow: hidden;" ></div>';
